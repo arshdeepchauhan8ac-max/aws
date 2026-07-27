@@ -5,6 +5,7 @@ const rateLimit = require("express-rate-limit")
 const mongoose = require("mongoose")
 const UserData = require("./models/UserData")
 const joi = require("joi")
+app.set("trust proxy", 1)
 app.use(express.json())
 // Rate limiter
 const limiter = rateLimit({
@@ -78,6 +79,10 @@ app.get("/api/userdata/:id", async (req, res) => {
 
 app.get("/api", (req, res) => {
 	res.send("server working")
+})
+
+app.get("/", (req, res) => {
+	res.send("Express API is running")
 })
 
 app.listen(8000, () => {
